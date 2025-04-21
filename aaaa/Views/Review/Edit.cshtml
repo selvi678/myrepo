@@ -1,0 +1,21 @@
+﻿@model Project.Models.Review
+
+@{
+    ViewData["Title"] = "Edit Review";
+}
+
+<h2>Edit Review for @Model.Product.Name</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Rating">Rating (1-5)</label>
+        <input type="number" name="Rating" class="form-control" min="1" max="5" value="@Model.Rating" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Comment">Comment</label>
+        <textarea name="Comment" class="form-control" rows="5" required>@Model.Comment</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Review</button>
+</form>

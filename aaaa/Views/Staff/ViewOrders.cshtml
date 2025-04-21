@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Project.Models.Order>
+
+@{
+    ViewData["Title"] = "All Orders";
+}
+
+<h2>Orders</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Items</th>
+            <th>Total Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>
+                    <ul>
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <li>@item.Product.Name x @item.Quantity</li>
+                        }
+                    </ul>
+                </td>
+                <td>@order.TotalAmount</td>
+                <td>@order.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

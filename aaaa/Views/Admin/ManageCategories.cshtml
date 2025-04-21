@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Manage Categories";
+}
+
+<h2>Manage Categories</h2>
+
+<a href="@Url.Action("CreateCategory", "Admin")" class="btn btn-primary mb-3">Create New Category</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>@category.CategoryDescription</td>
+                <td>
+                    <a href="@Url.Action("EditCategory", "Admin", new { id = category.Id })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("DeleteCategory", "Admin", new { id = category.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

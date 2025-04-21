@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Project.Models.ReturnRequest>
+
+@{
+    ViewData["Title"] = "Manage Returns";
+}
+
+<h2>Returns</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Return ID</th>
+            <th>Order ID</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ret in Model)
+        {
+            <tr>
+                <td>@ret.ReturnRequestId</td>
+                <td>@ret.OrderId</td>
+                <td>@ret.Reason</td>
+                <td>@ret.Status</td>
+                <td>
+                    @if (ret.Status != "Approved")
+                    {
+                        <form asp-action="ApproveReturn" method="post" asp-route-id="@ret.ReturnRequestId">
+                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-success">Approved</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

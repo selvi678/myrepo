@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Remove Item Confirmation";
+}
+
+<h2>Are you sure you want to remove this item from your cart?</h2>
+
+<div>
+    <a href="@Url.Action("RemoveFromCart", "Cart", new { id = Model.ProductId })" class="btn btn-danger">Yes, Remove</a>
+    <a href="@Url.Action("Index", "Cart")" class="btn btn-secondary">Cancel</a>
+</div>

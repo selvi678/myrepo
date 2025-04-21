@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Categories</h2>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@category.Name</h5>
+                    <p class="card-text">@category.Description</p>
+                    <a href="@Url.Action("Products", "Category", new { categoryId = category.CategoryId })" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

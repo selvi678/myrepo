@@ -1,0 +1,12 @@
+﻿@model Project.Models.DeliveryStatusViewModel
+
+@{
+    ViewData["Title"] = "Track Order";
+}
+
+<h2>Track Order - Order #@Model.OrderId</h2>
+
+<p><strong>Status:</strong> @Model.DeliveryStatus</p>
+
+<a asp-action="UpdateStatus" asp-route-orderId="@Model.OrderId" class="btn btn-warning">Update Status</a>
+<a asp-action="DeliveryDetails" asp-route-id="@Model.OrderId" class="btn btn-info">View Delivery Details</a>

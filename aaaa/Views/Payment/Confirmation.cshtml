@@ -1,0 +1,39 @@
+﻿@model Project.Models.Order
+
+@{
+    ViewData["Title"] = "Payment Confirmation";
+}
+
+<h2>Payment Successful!</h2>
+
+<p>Thank you for your purchase.</p>
+<p><strong>Order ID:</strong> @Model.OrderId</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Payment Method:</strong> @Model.PaymentMethod</p>
+<p><strong>Order Date:</strong> @Model.OrderDate.ToShortDateString()</p>
+<p><strong>Total:</strong> ₹@Model.TotalAmount</p>
+
+<h4>Items Purchased</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>₹@item.Price</td>
+                <td>₹@(item.Price * item.Quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Continue Shopping</a>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Project.Models.Review>
+
+@{
+    ViewData["Title"] = "Product Reviews";
+}
+
+<h2>Reviews</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Review Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model)
+        {
+            <tr>
+                <td>@review.Customer.FullName</td>
+                <td>@review.Rating</td>
+                <td>@review.Comment</td>
+                <td>@review.ReviewDate.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Review", new { id = review.rId })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "Review", new { id = review.rId })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

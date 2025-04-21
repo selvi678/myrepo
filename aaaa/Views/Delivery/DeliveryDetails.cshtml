@@ -1,0 +1,32 @@
+﻿@model Project.Models.Order
+
+@{
+    ViewData["Title"] = "Delivery Details";
+}
+
+<h2>Delivery Details - Order #@Model.OrderId</h2>
+<p><strong>Status:</strong> @Model.Status</p>
+
+<h4>Items</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Price.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="ConfirmDelivery" asp-route-id="@Model.OrderId" class="btn btn-success">Mark as Delivered</a>
+<a asp-action="TrackOrder" asp-route-orderId="@Model.OrderId" class="btn btn-secondary">Back to Tracking</a>

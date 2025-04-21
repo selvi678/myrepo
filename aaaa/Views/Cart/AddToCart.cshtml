@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Product Added to Cart";
+}
+
+<h2>Product Added to Cart</h2>
+
+<p>You have successfully added <strong>@Model.Name</strong> to your cart.</p>
+
+<div class="alert alert-success">
+    <strong>Price:</strong> @Model.Price.ToString("C")
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("Index", "Cart")" class="btn btn-primary">Go to Cart</a>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Continue Shopping</a>
+</div>

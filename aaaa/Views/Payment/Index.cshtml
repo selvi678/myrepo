@@ -1,0 +1,32 @@
+﻿@model Project.Models.Order
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<h2>Payment for Order #@Model.OrderId</h2>
+
+<p><strong>Total Amount:</strong> ₹@Model.TotalAmount</p>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form asp-action="ProcessPayment" method="post">
+    <input type="hidden" name="orderId" value="@Model.OrderId" />
+
+    <div class="form-group">
+        <label for="paymentMethod">Select Payment Method</label>
+        <select name="paymentMethod" class="form-control" required>
+            <option value="">-- Select --</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="UPI">UPI</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Pay Now</button>
+</form>

@@ -1,0 +1,36 @@
+﻿@model Project.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order #@Model.OrderId Details</h2>
+
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Shipping Address:</strong> @Model.ShippingAddress</p>
+<p><strong>Order Date:</strong> @Model.OrderDate.ToShortDateString()</p>
+
+<h3>Items</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@(item.Quantity * item.Price).ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p><strong>Grand Total:</strong> @Model.OrderItems.Sum(i => i.Quantity * i.Price).ToString("C")</p>

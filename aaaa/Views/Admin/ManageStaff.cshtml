@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Manage Staff";
+}
+
+<h2>Manage Staff</h2>
+
+<a href="@Url.Action("CreateStaff", "Admin")" class="btn btn-primary mb-3">Create New Staff</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Contact No</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in Model)
+        {
+            <tr>
+                <td>@staff.FullName</td>
+                <td>@staff.Email</td>
+                <td>@staff.ContactNo</td>
+                <td>@(staff.Status ? "Active" : "Inactive")</td>
+                <td>
+                    <a href="@Url.Action("EditStaff", "Admin", new { id = staff.Id })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("DeleteStaff", "Admin", new { id = staff.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this staff member?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
